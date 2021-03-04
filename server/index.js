@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const MiddleWare = require('./api/middleware')
 const api = require('./api');
 const PORT = 4242;
 
@@ -13,6 +14,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1', api);
+app.use(MiddleWare.notFound);
+app.use(MiddleWare.ErrorHandler);
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
